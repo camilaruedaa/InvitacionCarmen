@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación Carmen ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <audio id="musica" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        <div class="envelope" id="envelope" onclick="abrirInvitacion()">
+            <div class="flap" id="flap"></div>
+            <div class="wax-seal" id="seal">
+                <span class="initial">C</span>
+            </div>
+        </div>
+
+        <div class="card" id="card">
+            <img src="INVITACIONOK.png" alt="Carmen" class="foto-carmen">
+            
+            <h1 class="title">Carmen</h1>
+            
+            <div id="countdown" class="countdown-container">
+                <div class="time-block"><span id="days">00</span><small>Días</small></div>
+                <div class="time-block"><span id="hours">00</span><small>Hrs</small></div>
+                <div class="time-block"><span id="minutes">00</span><small>Min</small></div>
+            </div>
+
+            <div class="event-info">
+                <a href="https://maps.app.goo.gl/9Zp7Lp8zG7D2" target="_blank" class="venue-link">
+                    <p class="venue">📍 Fiesta Inn Coatzacoalcos</p>
+                    <small>Mal. Costero No. 801, Santa Isabel</small>
+                </a>
+                <p class="date-time">15 de Febrero | 09:15 AM</p>
+            </div>
+
+            <div class="audio-section">
+                <p class="audio-title">¡Déjale un mensaje de voz! 🎤</p>
+                <div class="recorder-controls">
+                    <button id="record-btn" class="record-circle">
+                        <span class="mic-icon">🎤</span>
+                    </button>
+                    <p id="record-status" class="status-text">Toca para grabar</p>
+                </div>
+                <div id="audio-playback" style="display: none; margin-top: 10px;">
+                    <audio id="audio-preview" controls style="width: 100%; height: 30px;"></audio>
+                    <button id="send-audio-btn" class="send-voice-btn">Enviar a Camila 📲</button>
+                </div>
+            </div>
+
+            <a href="#" id="calendar-btn" class="calendar-btn">Agendar en mi Calendario 🗓️</a>
+
+            <a href="https://wa.me/529933004483?text=%C2%A1Hola%20Cami!%20Confirmo%20con%20mucha%20alegr%C3%ADa%20mi%20asistencia%20al%20desayuno%20de%20Carmen.%20%C2%A1Ah%C3%AD%20nos%20vemos!" 
+               class="rsvp-btn">Confirmar con Camila 🥂</a>
+        </div>
+
+        <p class="tap-instruction" id="tap-text">Toca el sello para abrir</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
