@@ -34,12 +34,16 @@ const countdown = () => {
 };
 setInterval(countdown, 1000);
 
+// Lógica de Google Calendar Actualizada
 document.getElementById('calendar-btn').addEventListener('click', function(e) {
     e.preventDefault();
     const titulo = encodeURIComponent("Desayuno Carmen Rueda ✨");
     const lugar = encodeURIComponent("Fiesta Inn Coatzacoalcos, Mal. Costero No. 801, Santa Isabel, 96538 Coatzacoalcos, Ver.");
+    
+    // Horario: 09:15 AM (091500) a 13:15 PM (131500)
     const inicio = "20260215T091500";
-    const fin = "20260215T121500";
+    const fin = "20260215T131500";
+    
     const googleUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${titulo}&dates=${inicio}/${fin}&location=${lugar}`;
     window.open(googleUrl, '_blank');
 });
