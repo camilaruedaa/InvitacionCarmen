@@ -36,15 +36,25 @@ const countdown = () => {
 setInterval(countdown, 1000);
 
 // Lógica del Calendario
+// ... dentro de tu script.js en la parte del Calendario:
+
 document.getElementById('calendar-btn').addEventListener('click', function(e) {
     e.preventDefault();
     const titulo = encodeURIComponent("Desayuno Carmen Rueda ✨");
     const lugar = encodeURIComponent("Fiesta Inn Coatzacoalcos, Mal. Costero No. 801, Santa Isabel, 96538 Coatzacoalcos, Ver.");
-    const inicio = "20260215T090000";
-    const fin = "20260215T120000";
+    
+    // Ajustado a las 09:15 (T091500)
+    const inicio = "20260215T091500"; 
+    const fin = "20260215T121500";    
+    
     const googleUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${titulo}&dates=${inicio}/${fin}&location=${lugar}`;
     window.open(googleUrl, '_blank');
 });
+
+// Y actualiza también la fecha del contador para que sea exacta:
+const countdown = () => {
+    const countDate = new Date('February 15, 2026 09:15:00').getTime();
+    // ... resto del código del contador
 
 // Lógica de Grabación de Voz
 let mediaRecorder;
