@@ -34,20 +34,18 @@ const countdown = () => {
 };
 setInterval(countdown, 1000);
 
-// Lógica de Google Calendar Actualizada
+// Calendario: 9:15 AM a 1:15 PM (13:15)
 document.getElementById('calendar-btn').addEventListener('click', function(e) {
     e.preventDefault();
     const titulo = encodeURIComponent("Desayuno Carmen Rueda ✨");
     const lugar = encodeURIComponent("Fiesta Inn Coatzacoalcos, Mal. Costero No. 801, Santa Isabel, 96538 Coatzacoalcos, Ver.");
-    
-    // Horario: 09:15 AM (091500) a 13:15 PM (131500)
     const inicio = "20260215T091500";
     const fin = "20260215T131500";
-    
     const googleUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${titulo}&dates=${inicio}/${fin}&location=${lugar}`;
     window.open(googleUrl, '_blank');
 });
 
+// Grabador de voz con Descarga Automática
 let mediaRecorder;
 let audioChunks = [];
 const recordBtn = document.getElementById('record-btn');
@@ -66,13 +64,13 @@ recordBtn.addEventListener('click', async () => {
                 const audioBlob = new Blob(audioChunks, { type: 'audio/mp3' });
                 audioPreview.src = URL.createObjectURL(audioBlob);
                 playbackSection.style.display = 'block';
-                statusText.innerText = "¡Quedó genial! ✨";
+                statusText.innerText = "¡Mensaje listo! 🎤✨";
             };
             mediaRecorder.start();
             recordBtn.classList.add('recording');
             statusText.innerText = "Grabando... (Toca para detener)";
         } catch (err) {
-            alert("Activa el micrófono para grabar tu mensaje.");
+            alert("Por favor, activa el micrófono para grabar tu sorpresa.");
         }
     } else {
         mediaRecorder.stop();
@@ -80,8 +78,22 @@ recordBtn.addEventListener('click', async () => {
     }
 });
 
+// Lógica de envío y descarga automática al Grupo de WhatsApp
 document.getElementById('send-audio-btn').addEventListener('click', () => {
     const linkGrupo = "https://chat.whatsapp.com/GRXDrC1i738DHcCrbHEiaz"; 
-    alert("¡Qué detalle! Al cerrar este mensaje se abrirá el grupo de WhatsApp. ¡Pega o comparte tu audio ahí! ✨");
+    
+    // 1. Descarga automática del audio
+    const audioUrl = audioPreview.src;
+    const downloadLink = document.createElement('a');
+    downloadLink.href = audioUrl;
+    downloadLink.download = "Mensaje_Sorpresa_Carmen.mp3";
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+
+    // 2. Instrucción clara para el invitado
+    alert("¡Audio guardado! ✅\n\nSe abrirá el grupo de WhatsApp. Solo adjunta el archivo que acabamos de descargar y envíalo. ¡Le va a encantar! ✨");
+    
+    // 3. Redirección al grupo
     window.location.href = linkGrupo;
 });
