@@ -1,0 +1,120 @@
+:root {
+    --vino: #800020;
+    --gold: #d4af37;
+    --cream: #fffaf0;
+    --shadow-flap: #f2e9d2;
+}
+
+body {
+    background: radial-gradient(circle, #ffffff 0%, #f7f1e3 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* SOBRE */
+.envelope { 
+    width: 300px; height: 190px; 
+    background: var(--cream); position: relative; 
+    border: 1px solid #ddd2b5; cursor: pointer;
+    z-index: 10; transition: opacity 1s ease-in-out 1s; 
+}
+
+.flap {
+    position: absolute; top: 0; left: 0;
+    width: 0; height: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 110px solid var(--shadow-flap);
+    z-index: 15; transform-origin: top;
+    transition: transform 0.6s ease;
+}
+
+.wax-seal { 
+    width: 70px; height: 70px; z-index: 20;
+    background: radial-gradient(circle at 30% 30%, #a52a2a, var(--vino) 80%);
+    border-radius: 50%; position: absolute; 
+    top: 110px; left: 50%; transform: translate(-50%, -50%); 
+    display: flex; justify-content: center; align-items: center;
+    box-shadow: 2px 4px 10px rgba(0,0,0,0.3); border: 1px solid #500010;
+    animation: pulse 2s infinite;
+}
+
+.initial { color: var(--gold); font-family: 'Playfair Display', serif; font-size: 30px; font-weight: bold; }
+
+/* TARJETA */
+.card {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -20%) scale(0.8);
+    width: 320px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: white;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    opacity: 0; z-index: 5;
+    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1) 0.5s;
+    pointer-events: none;
+    padding-bottom: 20px;
+}
+
+.foto-carmen { width: 100%; display: block; }
+
+.title { 
+    font-family: 'Playfair Display', serif; color: var(--vino); 
+    font-size: 2.5rem; margin: 10px 0; 
+}
+
+.countdown-container { display: flex; justify-content: center; gap: 10px; background: #fdfaf3; padding: 10px; }
+.time-block span { font-size: 1.2rem; font-weight: 700; color: var(--vino); }
+.time-block small { font-size: 0.6rem; color: #999; display: block; }
+
+.venue-link { text-decoration: none; color: inherit; }
+.venue { font-weight: 700; margin: 10px 0 0 0; }
+.date-time { color: var(--vino); margin: 5px 0 15px 0; font-weight: 500; }
+
+/* AUDIO SECTION */
+.audio-section { margin: 15px; padding: 15px; background: #fdfaf3; border-radius: 12px; border: 1px dashed var(--gold); }
+.audio-title { font-family: 'Playfair Display', serif; font-weight: bold; color: var(--vino); margin: 0 0 10px 0; }
+.record-circle { width: 50px; height: 50px; border-radius: 50%; border: none; background: var(--vino); color: white; cursor: pointer; transition: 0.3s; }
+.record-circle.recording { background: #ff4b2b; animation: pulse-red 1.5s infinite; }
+.status-text { font-size: 0.75rem; color: #666; margin-top: 5px; }
+.send-voice-btn { background: #25D366; color: white; border: none; padding: 8px 15px; border-radius: 20px; margin-top: 10px; font-weight: bold; cursor: pointer; width: 100%; }
+
+/* BOTONES */
+.calendar-btn {
+    display: block; border: 2px solid var(--vino); color: var(--vino);
+    padding: 12px; text-decoration: none; font-weight: 700; 
+    margin: 10px 15px; border-radius: 4px; font-size: 0.9rem;
+}
+
+.rsvp-btn {
+    display: block; background: var(--vino); color: white;
+    padding: 15px; text-decoration: none; font-weight: 700; 
+    margin: 10px 15px; border-radius: 4px;
+}
+
+/* ANIMACIONES */
+.envelope.open .flap { transform: rotateX(180deg); }
+.envelope.open .wax-seal { opacity: 0; }
+.envelope.open { opacity: 0; pointer-events: none; }
+#card.reveal { opacity: 1; transform: translate(-50%, -50%) scale(1); z-index: 100; pointer-events: auto; }
+
+@keyframes pulse { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.05); } }
+@keyframes pulse-red { 0% { box-shadow: 0 0 0 0 rgba(255, 75, 43, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(255, 75, 43, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 75, 43, 0); } }
+
+.tap-instruction { position: absolute; bottom: 10%; color: #8b7355; font-style: italic; z-index: 30; }
