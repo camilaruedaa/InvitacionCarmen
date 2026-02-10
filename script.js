@@ -4,7 +4,7 @@ function abrirInvitacion() {
     const tapText = document.getElementById('tap-text');
     const musica = document.getElementById('musica');
 
-    musica.play().catch(e => console.log("Audio requiere interacción"));
+    musica.play().catch(e => console.log("Audio listo tras interacción"));
 
     envelope.classList.add('open');
     card.classList.add('reveal');
@@ -14,13 +14,12 @@ function abrirInvitacion() {
         confetti({
             particleCount: 150,
             spread: 70,
-            origin: { y: 0.5 },
+            origin: { y: 0.6 },
             colors: ['#d4af37', '#800020', '#ffffff']
         });
     }, 1000);
 }
 
-// Lógica del Contador
 const countdown = () => {
     const countDate = new Date('February 15, 2026 09:15:00').getTime();
     const now = new Date().getTime();
@@ -35,28 +34,16 @@ const countdown = () => {
 };
 setInterval(countdown, 1000);
 
-// Lógica del Calendario
-// ... dentro de tu script.js en la parte del Calendario:
-
 document.getElementById('calendar-btn').addEventListener('click', function(e) {
     e.preventDefault();
     const titulo = encodeURIComponent("Desayuno Carmen Rueda ✨");
     const lugar = encodeURIComponent("Fiesta Inn Coatzacoalcos, Mal. Costero No. 801, Santa Isabel, 96538 Coatzacoalcos, Ver.");
-    
-    // Ajustado a las 09:15 (T091500)
-    const inicio = "20260215T091500"; 
-    const fin = "20260215T121500";    
-    
+    const inicio = "20260215T091500";
+    const fin = "20260215T121500";
     const googleUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${titulo}&dates=${inicio}/${fin}&location=${lugar}`;
     window.open(googleUrl, '_blank');
 });
 
-// Y actualiza también la fecha del contador para que sea exacta:
-const countdown = () => {
-    const countDate = new Date('February 15, 2026 09:15:00').getTime();
-    // ... resto del código del contador
-
-// Lógica de Grabación de Voz
 let mediaRecorder;
 let audioChunks = [];
 const recordBtn = document.getElementById('record-btn');
@@ -75,13 +62,13 @@ recordBtn.addEventListener('click', async () => {
                 const audioBlob = new Blob(audioChunks, { type: 'audio/mp3' });
                 audioPreview.src = URL.createObjectURL(audioBlob);
                 playbackSection.style.display = 'block';
-                statusText.innerText = "¡Mensaje listo!";
+                statusText.innerText = "¡Quedó genial! ✨";
             };
             mediaRecorder.start();
             recordBtn.classList.add('recording');
-            statusText.innerText = "Grabando... (Toca para parar)";
+            statusText.innerText = "Grabando... (Toca para detener)";
         } catch (err) {
-            alert("Necesitas dar permiso al micrófono para grabar.");
+            alert("Activa el micrófono para grabar tu mensaje.");
         }
     } else {
         mediaRecorder.stop();
@@ -90,5 +77,7 @@ recordBtn.addEventListener('click', async () => {
 });
 
 document.getElementById('send-audio-btn').addEventListener('click', () => {
-    window.location.href = "https://wa.me/529933004483?text=¡Hola Cami! Acabo de grabar un mensaje sorpresa para Carmen en la invitación. 🎤✨";
+    const linkGrupo = "https://chat.whatsapp.com/GRXDrC1i738DHcCrbHEiaz"; 
+    alert("¡Qué detalle! Al cerrar este mensaje se abrirá el grupo de WhatsApp. ¡Pega o comparte tu audio ahí! ✨");
+    window.location.href = linkGrupo;
 });
